@@ -1,0 +1,12 @@
+jobs:
+  pre-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bump signing key version
+        run: make rotate-signing-key
+
+  deploy:
+    needs: pre-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./deploy.sh
